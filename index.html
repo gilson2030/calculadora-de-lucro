@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Preço & Lucro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Calculadora de Preço & Lucro</h1>
+    <button id="btn-theme">🌙</button>
+    <button id="btn-install" style="display:none;">Instalar App</button>
+  </header>
+  
+  <main>
+    <section class="produto-cadastro">
+      <h2>Cadastro de Produtos</h2>
+      <form id="form-produto">
+        <input type="text" id="nome-produto" placeholder="Nome do produto" required>
+        <input type="number" id="estoque-produto" placeholder="Estoque" min="0" step="1">
+        <button type="submit">Cadastrar</button>
+      </form>
+      <div id="lista-produtos"></div>
+    </section>
+    
+    <section class="calculo-preco">
+      <h2>Calcular Preço de Venda</h2>
+      <form id="calc-form">
+        <select id="produto-select">
+          <option value="">Escolha um produto</option>
+        </select><br>
+        <input type="number" id="custo" placeholder="Custo (R$)" step="0.01" min="0">
+        <input type="number" id="frete" placeholder="Frete (R$)" step="0.01" min="0">
+        <input type="number" id="outros" placeholder="Outros custos (R$)" step="0.01" min="0">
+        <input type="number" id="taxa_mkt" placeholder="Taxa Marketplace (%)" step="0.01" min="0">
+        <input type="number" id="comissao" placeholder="Comissão (%)" step="0.01" min="0">
+        <input type="number" id="imposto" placeholder="Imposto (%)" step="0.01" min="0">
+        <label>
+          <input type="radio" name="tipoLucro" value="fixo" checked onclick="toggleLucro()"> Lucro fixo (R$)
+        </label>
+        <input type="number" id="lucro" placeholder="Lucro desejado" step="0.01" min="0">
+        <label>
+          <input type="radio" name="tipoLucro" value="percentual" onclick="toggleLucro()"> Lucro (%) sobre o custo total
+        </label>
+        <input type="number" id="lucro_perc" placeholder="Lucro (%)" step="0.01" min="0" style="display:none;">
+        <button type="submit">Calcular</button>
+      </form>
+      <div id="resultado"></div>
+      <button id="btn-preco-minimo">Simulador de Preço Mínimo</button>
+      <div id="simulador-minimo"></div>
+    </section>
+    
+    <section class="graficos-relatorios">
+      <h2>Relatórios & Gráficos</h2>
+      <canvas id="grafico-lucro" height="170"></canvas>
+      <canvas id="grafico-preco" height="170"></canvas>
+      <div id="resumo-mensal"></div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Sua Loja</p>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
